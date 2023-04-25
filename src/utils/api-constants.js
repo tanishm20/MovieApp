@@ -1,0 +1,6 @@
+export const baseUrl = 'https://api.themoviedb.org/3/';
+export const popularMovieApi =
+  'movie/popular?api_key={0}&language=en-US&page=1';
+export const searchMovieApi =
+  'search/movie?api_key={0}&language=en-US&query={1}&page=1&include_adult=false';
+export const api_key = '7ecff10da5cebd7cc6e595cc8d5dca1f';
