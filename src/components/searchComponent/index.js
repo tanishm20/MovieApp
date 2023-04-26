@@ -1,4 +1,5 @@
 import {
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
@@ -12,6 +13,7 @@ const SearchComponent = ({value, onPress, onTextChange}) => {
   const throttle = () => {
     if (flag) {
       onPress();
+      Keyboard.dismiss();
       setFlag(false);
       setTimeout(() => {
         setFlag(true);
@@ -28,6 +30,9 @@ const SearchComponent = ({value, onPress, onTextChange}) => {
           value={value}
           placeholderTextColor={'#717171'}
           placeholder="Please enter movie name"
+          autoCorrect={false}
+          returnKeyType="go"
+          onSubmitEditing={throttle}
         />
         <TouchableOpacity
           activeOpacity={1}
@@ -50,6 +55,7 @@ const styles = StyleSheet.create({
     color: '#04abc1',
   },
   buttonText: {
+    textAlign: 'center',
     fontSize: 14,
     fontWeight: '700',
     fontStyle: 'italic',

@@ -11,11 +11,12 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState([]);
   const [inputText, setInputText] = useState('');
+  const [isError, setIsError] = useState(false);
 
-  const {isFetching, popularMovieResponse} = useSelector(
+  const {isFetching, popularMovieResponse, error} = useSelector(
     state => state.popularMovieReducer,
   );
-  const {isLoading, searchMovieResponse} = useSelector(
+  const {isLoading, searchMovieResponse, searchMovieError} = useSelector(
     state => state.searchMovieReducer,
   );
 
@@ -25,23 +26,29 @@ const HomeScreen = () => {
 
   useEffect(() => {
     if (popularMovieResponse?.results) {
-      setInputText('');
+      setIsError(false);
       setData(popularMovieResponse.results);
     }
   }, [popularMovieResponse]);
 
   useEffect(() => {
     if (searchMovieResponse?.results) {
-      setInputText('');
+      setIsError(false);
       setData(searchMovieResponse.results);
     }
   }, [searchMovieResponse]);
 
+  useEffect(() => {
+    if (searchMovieError || error) {
+      setIsError(true);
+    }
+  }, [error, searchMovieError]);
   const onTextChange = text => {
     setInputText(text);
   };
 
   const onSearch = () => {
+    setData([]);
     if (inputText) {
       dispatch(searchMovieData(inputText));
     } else {
@@ -59,7 +66,7 @@ const HomeScreen = () => {
       {isLoading || isFetching ? (
         <ActivityIndicatorComponent />
       ) : (
-        <TileComponent data={data} />
+        <TileComponent data={data} isError={isError} />
       )}
     </View>
   );

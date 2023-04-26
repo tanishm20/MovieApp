@@ -7,7 +7,7 @@ import {
 const initialState = {
   isLoading: false,
   searchMovieResponse: null,
-  error: null,
+  searchMovieError: null,
 };
 
 const searchMovieReducer = (state = initialState, actions) => {
@@ -16,7 +16,7 @@ const searchMovieReducer = (state = initialState, actions) => {
       return {
         ...state,
         isLoading: true,
-        error: null,
+        searchMovieErrorerror: null,
       };
 
     case ACTION_SEARCH_MOVIE_RESPONSE:
@@ -30,7 +30,7 @@ const searchMovieReducer = (state = initialState, actions) => {
       return {
         ...state,
         isLoading: false,
-        error: actions.payload,
+        searchMovieError: actions.payload,
       };
 
     default:

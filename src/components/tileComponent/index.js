@@ -3,7 +3,7 @@ import React from 'react';
 import formate from '../../utils/string-utils';
 import {imageApi} from '../../utils/api-constants';
 
-const TileComponent = ({data}) => {
+const TileComponent = ({data, isError}) => {
   const renderItem = ({item}) => {
     const img = formate(imageApi, item.poster_path);
     return (
@@ -37,9 +37,9 @@ const TileComponent = ({data}) => {
       ) : (
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>
-            {
-              "Oops! It looks like aren't there any great matches for your search"
-            }
+            {isError
+              ? 'Sorry, something went wrong. Please try again'
+              : "Oops! It looks like aren't there any great matches for your search"}
           </Text>
         </View>
       )}
