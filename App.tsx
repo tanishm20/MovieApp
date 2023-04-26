@@ -1,15 +1,14 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { Provider } from 'react-redux';
-import App1 from './App1';
 import store from './src/redux';
-
+import AppNavigation from './src/navigation/navigation';
 
 function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <SafeAreaView>
-        <App1 />
+      <SafeAreaView style={{flex: 1,backgroundColor:'#ffffff'}}>
+        <AppNavigation/>
       </SafeAreaView>
     </Provider>
   );

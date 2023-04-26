@@ -2,13 +2,18 @@ import formate from '../../../utils/string-utils';
 import {httpClient} from '../../../utils/rest-client';
 import {takeLatest, call, put} from 'redux-saga/effects';
 import {api_key, popularMovieApi} from '../../../utils/api-constants';
+import {
+  ACTION_POPULAR_MOVIE_ERROR,
+  ACTION_POPULAR_MOVIE_REQUEST,
+  ACTION_POPULAR_MOVIE_RESPONSE,
+} from '../../action/popularMovie-action';
 
 export function* popularMovieData() {
   try {
     const response = yield call(popularMovie);
-    yield put({type: 'ACTION_POPULAR_MOVIE_RESPONSE', payload: response});
+    yield put({type: ACTION_POPULAR_MOVIE_RESPONSE, payload: response});
   } catch (error) {
-    yield put({type: 'ACTION_POPULAR_MOVIE_ERROR', payload: error});
+    yield put({type: ACTION_POPULAR_MOVIE_ERROR, payload: error});
   }
 }
 
@@ -27,5 +32,5 @@ export async function popularMovie() {
 }
 
 export function* popularMovieSaga() {
-  yield takeLatest('ACTION_POPULAR_MOVIE_REQUEST', popularMovieData);
+  yield takeLatest(ACTION_POPULAR_MOVIE_REQUEST, popularMovieData);
 }

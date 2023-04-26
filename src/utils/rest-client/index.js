@@ -24,11 +24,6 @@ const httpClient = axios.create(config);
 /** Adding the response interceptors */
 httpClient.interceptors.response.use(
   response => {
-    console.log(
-      'Response Intercepter URL:',
-      response?.config?.baseURL + response?.config?.url,
-    );
-    console.log('Response Intercepter Data:', response?.data);
     return response;
   },
   error => {
