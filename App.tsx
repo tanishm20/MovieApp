@@ -7,7 +7,7 @@ import AppNavigation from './src/navigation/navigation';
 function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <SafeAreaView style={{flex: 1,backgroundColor:'#ffffff'}}>
+      <SafeAreaView style={{flex: 1,backgroundColor:'#1d2129'}}>
         <AppNavigation/>
       </SafeAreaView>
     </Provider>

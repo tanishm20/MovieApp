@@ -5,7 +5,7 @@ import {
 } from '../../action/searchMovie-action';
 
 const initialState = {
-  isFetching: false,
+  isLoading: false,
   searchMovieResponse: null,
   error: null,
 };
@@ -15,21 +15,21 @@ const searchMovieReducer = (state = initialState, actions) => {
     case ACTION_SEARCH_MOVIE_REQUEST:
       return {
         ...state,
-        isFetching: true,
+        isLoading: true,
         error: null,
       };
 
     case ACTION_SEARCH_MOVIE_RESPONSE:
       return {
         ...state,
-        isFetching: false,
+        isLoading: false,
         searchMovieResponse: actions.payload,
       };
 
     case ACTION_SEARCH_MOVIE_ERROR:
       return {
         ...state,
-        isFetching: false,
+        isLoading: false,
         error: actions.payload,
       };
 

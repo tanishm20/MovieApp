@@ -10,7 +10,7 @@ import {
 
 export function* searchMovieData(action) {
   try {
-    const response = yield call(searchMovie(action.payload));
+    const response = yield call(searchMovie, action.payload);
     yield put({type: ACTION_SEARCH_MOVIE_RESPONSE, payload: response});
   } catch (error) {
     yield put({type: ACTION_SEARCH_MOVIE_ERROR, payload: error});
