@@ -46,3 +46,7 @@ run yarn android or yarn ios to run on device or emulator
 
     
   
+
+https://user-images.githubusercontent.com/50777407/234805009-2dcf5297-4c6e-42ff-9a8c-ceae9b536097.mp4
+
+
