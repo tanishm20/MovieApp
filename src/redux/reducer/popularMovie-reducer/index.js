@@ -35,6 +35,7 @@ const popularMovieReducer = (state = initialState, actions) => {
       return {
         ...state,
         isFetching: false,
+        moreLoading: false,
         popularMovieResponse: [
           ...state.popularMovieResponse,
           ...actions.payload?.data?.results,

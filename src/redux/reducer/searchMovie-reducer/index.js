@@ -35,6 +35,7 @@ const searchMovieReducer = (state = initialState, actions) => {
       return {
         ...state,
         isLoading: false,
+        isMoreLoading: false,
         searchMovieResponse: [
           ...state.searchMovieResponse,
           ...actions.payload?.data?.results,

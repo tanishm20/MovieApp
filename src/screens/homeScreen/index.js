@@ -68,7 +68,10 @@ const HomeScreen = () => {
   };
 
   const onLoadMore = () => {
-    if (page < totalPages || page < searchPages) {
+    if (page < totalPages && !isSearch) {
+      setPage(page + 1);
+    }
+    if (isSearch && page < searchPages) {
       setPage(page + 1);
     }
   };
