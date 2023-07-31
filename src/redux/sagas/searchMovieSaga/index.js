@@ -18,10 +18,15 @@ export function* searchMovieData(action) {
 }
 
 export async function searchMovie(searchkey) {
-  const url = formate(searchMovieApi, api_key, searchkey);
+  const url = formate(
+    searchMovieApi,
+    api_key,
+    searchkey?.inputText,
+    searchkey?.page,
+  );
   try {
     const response = await httpClient.get(url);
-    return response.data;
+    return response;
   } catch (err) {
     if (err.code === 'ECONNABORTED') {
       throw new Error('timeout');

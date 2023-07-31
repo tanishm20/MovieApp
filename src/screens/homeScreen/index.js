@@ -12,29 +12,38 @@ const HomeScreen = () => {
   const [data, setData] = useState([]);
   const [inputText, setInputText] = useState('');
   const [isError, setIsError] = useState(false);
-
-  const {isFetching, popularMovieResponse, error} = useSelector(
-    state => state.popularMovieReducer,
-  );
-  const {isLoading, searchMovieResponse, searchMovieError} = useSelector(
-    state => state.searchMovieReducer,
-  );
+  const [page, setPage] = useState(1);
+  const [isSearch, setIsSearch] = useState(false);
+  const {isFetching, popularMovieResponse, error, totalPages, moreLoading} =
+    useSelector(state => state.popularMovieReducer);
+  const {
+    isLoading,
+    searchMovieResponse,
+    searchMovieError,
+    searchPages,
+    isMoreLoading,
+  } = useSelector(state => state.searchMovieReducer);
 
   useEffect(() => {
-    dispatch(popularMovieData());
-  }, [dispatch]);
+    if (!isSearch) {
+      dispatch(popularMovieData(page));
+    } else {
+      dispatch(searchMovieData({inputText: inputText, page: page}));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, isSearch, page]);
 
   useEffect(() => {
-    if (popularMovieResponse?.results) {
+    if (popularMovieResponse) {
       setIsError(false);
-      setData(popularMovieResponse.results);
+      setData(popularMovieResponse);
     }
   }, [popularMovieResponse]);
 
   useEffect(() => {
-    if (searchMovieResponse?.results) {
+    if (searchMovieResponse) {
       setIsError(false);
-      setData(searchMovieResponse.results);
+      setData(searchMovieResponse);
     }
   }, [searchMovieResponse]);
 
@@ -50,12 +59,19 @@ const HomeScreen = () => {
   const onSearch = () => {
     setData([]);
     if (inputText) {
-      dispatch(searchMovieData(inputText));
+      setIsSearch(true);
+      setPage(1);
     } else {
-      dispatch(popularMovieData());
+      setIsSearch(false);
+      setPage(1);
     }
   };
 
+  const onLoadMore = () => {
+    if (page < totalPages || page < searchPages) {
+      setPage(page + 1);
+    }
+  };
   return (
     <View style={styles.container}>
       <SearchComponent
@@ -66,7 +82,12 @@ const HomeScreen = () => {
       {isLoading || isFetching ? (
         <ActivityIndicatorComponent />
       ) : (
-        <TileComponent data={data} isError={isError} />
+        <TileComponent
+          data={data}
+          isError={isError}
+          onLoadMore={onLoadMore}
+          moreLoading={moreLoading || isMoreLoading}
+        />
       )}
     </View>
   );

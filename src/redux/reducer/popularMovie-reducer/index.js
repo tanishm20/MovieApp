@@ -6,24 +6,40 @@ import {
 
 const initialState = {
   isFetching: false,
-  popularMovieResponse: null,
+  moreLoading: false,
+  popularMovieResponse: [],
   error: null,
+  totalPages: null,
 };
 
 const popularMovieReducer = (state = initialState, actions) => {
   switch (actions.type) {
     case ACTION_POPULAR_MOVIE_REQUEST:
-      return {
-        ...state,
-        isFetching: true,
-        error: null,
-      };
+      if (actions.payload === 1) {
+        return {
+          ...state,
+          isFetching: true,
+          moreLoading: false,
+          error: null,
+        };
+      } else {
+        return {
+          ...state,
+          isFetching: false,
+          moreLoading: true,
+          error: null,
+        };
+      }
 
     case ACTION_POPULAR_MOVIE_RESPONSE:
       return {
         ...state,
         isFetching: false,
-        popularMovieResponse: actions.payload,
+        popularMovieResponse: [
+          ...state.popularMovieResponse,
+          ...actions.payload?.data?.results,
+        ],
+        totalPages: actions.payload?.data?.total_pages,
       };
 
     case ACTION_POPULAR_MOVIE_ERROR:

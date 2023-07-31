@@ -2,8 +2,9 @@ import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import formate from '../../utils/string-utils';
 import {imageApi} from '../../utils/api-constants';
+import ActivityIndicatorComponent from '../activityIndicatorComponent';
 
-const TileComponent = ({data, isError}) => {
+const TileComponent = ({data, isError, onLoadMore, moreLoading}) => {
   const renderItem = ({item}) => {
     const img = formate(imageApi, item.poster_path);
     return (
@@ -24,6 +25,9 @@ const TileComponent = ({data, isError}) => {
       </View>
     );
   };
+  const renderFooter = () => {
+    return moreLoading ? <ActivityIndicatorComponent /> : null;
+  };
   return (
     <>
       {data.length > 0 ? (
@@ -33,6 +37,10 @@ const TileComponent = ({data, isError}) => {
           data={data}
           keyExtractor={item => item.id}
           extraData={data}
+          onEndReachedThreshold={0.2}
+          onEndReached={onLoadMore}
+          ListFooterComponent={renderFooter}
+          enableEmptySections={true}
         />
       ) : (
         <View style={styles.errorContainer}>
