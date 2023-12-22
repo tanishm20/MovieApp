@@ -8,6 +8,15 @@ import HomeScreen from '../screens/homeScreen';
 
 const Stack = createNativeStackNavigator();
 
+const linking = {
+  prefixes: ['movie-app://'],
+  config: {
+    screens: {
+      path: 'homescreen',
+    },
+  },
+};
+
 const InAppNavigation = () => {
   return (
     <Stack.Navigator initialRouteName={HOME_SCREEN}>
@@ -23,7 +32,7 @@ const InAppNavigation = () => {
 };
 const AppNavigation = () => {
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <InAppNavigation />
     </NavigationContainer>
   );

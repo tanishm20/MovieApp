@@ -9,7 +9,8 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
-
+// Add this header at the top of the file:
+#import <React/RCTLinkingManager.h>
 
 
 static void InitializeFlipper(UIApplication *application) {
@@ -34,6 +35,17 @@ static void InitializeFlipper(UIApplication *application) {
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
+
+
+// Add the following functions inside `@implementation AppDelegate` above `@end`:
+- (BOOL)application:(UIApplication *)application
+   openURL:(NSURL *)url
+   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
+}
+
+
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
 {
