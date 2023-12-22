@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView, Text} from 'react-native';
 
 function App(): JSX.Element {
   return (
-    <View>
+    <SafeAreaView>
       <Text>hdhdhdh</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
