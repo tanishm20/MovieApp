@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {baseUrl} from '../api-constants';
+import { baseUrl } from '../api-constants';
 
 const config = {
   baseURL: baseUrl,
@@ -20,11 +20,11 @@ httpClient.interceptors.response.use(
       (error.response && error.response.status !== 401) ||
       (error.response && error.response.status === 401)
     ) {
-      return new Promise((resolve, reject) => {
+      return new Promise((_resolve, reject) => {
         reject(error);
       });
     }
   },
 );
 
-export {httpClient};
+export { httpClient };

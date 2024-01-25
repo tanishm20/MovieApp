@@ -1,10 +1,10 @@
-import {StyleSheet, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {popularMovieData} from '../../redux/action/popularMovie-action';
+import { StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { popularMovieData } from '../../redux/action/popularMovie-action';
 import TileComponent from '../../components/tileComponent';
 import SearchComponent from '../../components/searchComponent';
-import {searchMovieData} from '../../redux/action/searchMovie-action';
+import { searchMovieData } from '../../redux/action/searchMovie-action';
 import ActivityIndicatorComponent from '../../components/activityIndicatorComponent';
 
 const HomeScreen = () => {
@@ -14,7 +14,7 @@ const HomeScreen = () => {
   const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
   const [isSearch, setIsSearch] = useState(false);
-  const {isFetching, popularMovieResponse, error, totalPages, moreLoading} =
+  const { isFetching, popularMovieResponse, error, totalPages, moreLoading } =
     useSelector(state => state.popularMovieReducer);
   const {
     isLoading,
@@ -28,7 +28,7 @@ const HomeScreen = () => {
     if (!isSearch) {
       dispatch(popularMovieData(page));
     } else {
-      dispatch(searchMovieData({inputText: inputText, page: page}));
+      dispatch(searchMovieData({ inputText: inputText, page: page }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isSearch, page]);
