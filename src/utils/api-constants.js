@@ -1,2 +1,2 @@
 export const stockDataApi =
-  'https://run.mocky.io/v3/4a76b093-b79d-49f5-9757-a709031c539d';
+  'https://run.mocky.io/v3/bde7230e-bc91-43bc-901d-c79d008bddc8';

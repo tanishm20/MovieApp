@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React, { useMemo, useState } from 'react';
-import { currentValue, investmentValue } from '../../utils/constants';
+import { currentValue, investmentValue, todaysPNL } from '../../utils/constants';
 
 const FooterBox = ({ data }) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -14,6 +14,13 @@ const FooterBox = ({ data }) => {
     const totalInvestmentValue = useMemo(() => {
         return data.reduce(
             (accum, item) => accum + investmentValue(item?.avgPrice, item?.quantity),
+            0,
+        );
+    }, [data]);
+    const todaysPNLValue = useMemo(() => {
+        return data.reduce(
+            (accum, item) =>
+                accum + todaysPNL(item?.close, item?.ltp, item?.quantity),
             0,
         );
     }, [data]);
@@ -51,16 +58,14 @@ const FooterBox = ({ data }) => {
                         <Text style={[styles.boldText, styles.textStyle]}>
                             Today's Profit & Loss:
                         </Text>
-                        <Text style={styles.textStyle}>
-                            ₹{totalCurrentValue - totalInvestmentValue.toFixed(2)}
-                        </Text>
+                        <Text style={styles.textStyle}>₹{todaysPNLValue?.toFixed(2)}</Text>
                     </View>
                 </View>
             )}
             <View style={styles.viewStyle}>
                 <Text style={[styles.boldText, styles.textStyle]}>Profit & Loss:</Text>
                 <Text style={styles.textStyle}>
-                    ₹{totalCurrentValue - totalInvestmentValue.toFixed(2)}
+                    ₹{(totalCurrentValue - totalInvestmentValue)?.toFixed(2)}
                 </Text>
             </View>
         </View>

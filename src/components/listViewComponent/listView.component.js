@@ -14,14 +14,14 @@ const ListView = ({ data }) => {
                         {item?.symbol}
                     </Text>
                     <Text style={styles.textStyle}>
-                        LTP: <Text style={styles.boldText}> ₹ {item?.ltp}</Text>
+                        LTP: <Text style={styles.boldText}> ₹ {item?.ltp?.toFixed(2)}</Text>
                     </Text>
                 </View>
                 <View style={styles.viewStyle}>
                     <Text style={styles.textStyle}>{item?.quantity}</Text>
                     <Text style={styles.textStyle}>
                         P/L:
-                        <Text style={styles.boldText}> ₹ {pl}</Text>
+                        <Text style={styles.boldText}> ₹ {pl?.toFixed(2)}</Text>
                     </Text>
                 </View>
                 {data?.length - 1 !== index && <View style={styles.seperatorStyle} />}

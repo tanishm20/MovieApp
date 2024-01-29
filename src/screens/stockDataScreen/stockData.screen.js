@@ -12,7 +12,7 @@ const StockScreen = () => {
 
     useEffect(() => {
         dispatch(stockDataAction());
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         if (stockData && stockData?.userHolding) {
