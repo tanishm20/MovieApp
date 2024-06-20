@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-const SearchComponent = ({value, onPress, onTextChange}) => {
+const SearchComponent = ({ value, onPress, onTextChange }) => {
   const [flag, setFlag] = useState(true);
   const throttle = () => {
     if (flag) {

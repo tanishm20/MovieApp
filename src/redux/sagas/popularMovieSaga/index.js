@@ -1,7 +1,7 @@
 import formate from '../../../utils/string-utils';
-import {httpClient} from '../../../utils/rest-client';
-import {takeLatest, call, put} from 'redux-saga/effects';
-import {api_key, popularMovieApi} from '../../../utils/api-constants';
+import { httpClient } from '../../../utils/rest-client';
+import { takeLatest, call, put } from 'redux-saga/effects';
+import { api_key, popularMovieApi } from '../../../utils/api-constants';
 import {
   ACTION_POPULAR_MOVIE_ERROR,
   ACTION_POPULAR_MOVIE_REQUEST,
@@ -11,9 +11,9 @@ import {
 export function* popularMovieData(action) {
   try {
     const response = yield call(popularMovie, action.payload);
-    yield put({type: ACTION_POPULAR_MOVIE_RESPONSE, payload: response});
+    yield put({ type: ACTION_POPULAR_MOVIE_RESPONSE, payload: response });
   } catch (error) {
-    yield put({type: ACTION_POPULAR_MOVIE_ERROR, payload: error});
+    yield put({ type: ACTION_POPULAR_MOVIE_ERROR, payload: error });
   }
 }
 

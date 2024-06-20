@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {baseUrl} from '../api-constants';
+import { baseUrl } from '../api-constants';
 
 const config = {
   baseURL: baseUrl,
@@ -27,4 +27,4 @@ httpClient.interceptors.response.use(
   },
 );
 
-export {httpClient};
+export { httpClient };

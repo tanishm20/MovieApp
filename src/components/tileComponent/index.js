@@ -1,11 +1,11 @@
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import formate from '../../utils/string-utils';
-import {imageApi} from '../../utils/api-constants';
+import { imageApi } from '../../utils/api-constants';
 import ActivityIndicatorComponent from '../activityIndicatorComponent';
 
-const TileComponent = ({data, isError, onLoadMore, moreLoading}) => {
-  const renderItem = ({item}) => {
+const TileComponent = ({ data, isError, onLoadMore, moreLoading }) => {
+  const renderItem = ({ item }) => {
     const img = formate(imageApi, item.poster_path);
     return (
       <View style={styles.item}>

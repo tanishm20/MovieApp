@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 import popularMovieReducer from './popularMovie-reducer';
 import searchMovieReducer from './searchMovie-reducer';
