@@ -1,5 +1,5 @@
-import { StyleSheet, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TileComponent, SearchComponent, ActivityIndicatorComponent } from '../../components';
 import { popularMovieData, searchMovieData } from '../../redux/action';
@@ -53,7 +53,7 @@ const HomeScreen = () => {
     setInputText(text);
   };
 
-  const onSearch = () => {
+  const onSearch = useCallback(() => {
     setData([]);
     if (inputText) {
       setIsSearch(true);
@@ -62,7 +62,7 @@ const HomeScreen = () => {
       setIsSearch(false);
       setPage(1);
     }
-  };
+  }, [inputText]);
 
   const onLoadMore = () => {
     if (page < totalPages && !isSearch) {

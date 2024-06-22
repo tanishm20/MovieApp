@@ -31,7 +31,6 @@ export const SearchComponent = ({ value, onPress, onTextChange }) => {
           placeholderTextColor={'#717171'}
           placeholder="Please enter movie name"
           autoCorrect={false}
-          returnKeyType="go"
           onSubmitEditing={throttle}
         />
         <TouchableOpacity
