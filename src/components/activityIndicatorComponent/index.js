@@ -1,7 +1,8 @@
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import React from 'react';
+import { styles } from './style';
 
-const ActivityIndicatorComponent = () => {
+export const ActivityIndicatorComponent = () => {
   return (
     <View style={styles.container}>
       <ActivityIndicator color={'#04abc1'} />
@@ -9,11 +10,5 @@ const ActivityIndicatorComponent = () => {
   );
 };
 
-export default ActivityIndicatorComponent;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
+

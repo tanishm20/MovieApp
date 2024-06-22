@@ -1,11 +1,9 @@
 import { StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { popularMovieData } from '../../redux/action/popularMovie-action';
-import TileComponent from '../../components/tileComponent';
-import SearchComponent from '../../components/searchComponent';
-import { searchMovieData } from '../../redux/action/searchMovie-action';
-import ActivityIndicatorComponent from '../../components/activityIndicatorComponent';
+import { TileComponent, SearchComponent, ActivityIndicatorComponent } from '../../components';
+import { popularMovieData, searchMovieData } from '../../redux/action';
+import { styles } from './style';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -95,11 +93,5 @@ const HomeScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#1d2129',
-    alignItems: 'center',
-  },
-});
+
 export default HomeScreen;

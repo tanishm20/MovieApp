@@ -1,10 +1,11 @@
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, Text, View } from 'react-native';
 import React from 'react';
 import formate from '../../utils/string-utils';
 import { imageApi } from '../../utils/api-constants';
-import ActivityIndicatorComponent from '../activityIndicatorComponent';
+import { ActivityIndicatorComponent } from '../activityIndicatorComponent';
+import { styles } from './style';
 
-const TileComponent = ({ data, isError, onLoadMore, moreLoading }) => {
+export const TileComponent = ({ data, isError, onLoadMore, moreLoading }) => {
   const renderItem = ({ item }) => {
     const img = formate(imageApi, item.poster_path);
     return (
@@ -54,53 +55,3 @@ const TileComponent = ({ data, isError, onLoadMore, moreLoading }) => {
     </>
   );
 };
-
-export default TileComponent;
-
-const styles = StyleSheet.create({
-  item: {
-    padding: 8,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    flex: 1,
-    margin: 2,
-    borderColor: '#04abc190',
-    borderWidth: 2,
-    borderRadius: 12,
-  },
-  image: {
-    width: 250,
-    height: 250,
-    alignSelf: 'center',
-    resizeMode: 'contain',
-  },
-  imageTitle: {
-    marginVertical: 8,
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#ffffff',
-  },
-  imageReleased: {
-    fontSize: 12,
-    fontWeight: '300',
-    color: '#ffffff',
-  },
-  imageOverView: {
-    marginTop: 10,
-    fontSize: 14,
-    fontWeight: '300',
-    color: '#ffffff',
-  },
-  errorContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 16,
-  },
-  errorText: {
-    textAlign: 'center',
-    color: '#ffffff',
-    fontSize: 16,
-    fontWeight: '800',
-  },
-});

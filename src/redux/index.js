@@ -1,10 +1,8 @@
-import { createStore, applyMiddleware } from 'redux';
 import { persistStore } from 'redux-persist';
-
-import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import rootReducer from './reducer';
+import { configureStore } from '@reduxjs/toolkit';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,10 +13,11 @@ if (__DEV__) {
   middlewares.push(createDebugger());
 }
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(...middlewares)),
-);
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({ serializableCheck: false }).concat(middlewares),
+});
 
 export const persistor = persistStore(store);
 
